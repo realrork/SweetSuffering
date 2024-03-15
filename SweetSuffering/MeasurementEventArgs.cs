@@ -1,10 +1,10 @@
 ﻿namespace SweetSuffering
 {
-    public class MeasurementLevel : EventArgs
+    public class MeasurementEventArgs : EventArgs
     {
         public int Level { get; set; }
 
-        public MeasurementLevel(int level)
+        public MeasurementEventArgs(int level)
         {
             Level = level;
         }

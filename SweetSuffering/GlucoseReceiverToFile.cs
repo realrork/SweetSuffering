@@ -2,15 +2,15 @@
 {
     internal class GlucoseReceiverToFile : ReceiverToFileAbstract
     {
-        private const string fileName = "glucose-diary.txt";
+        private string fileName = SweetSufferingConfig.GlucoseValuesFile;
 
         public GlucoseReceiverToFile()
-            : base(fileName, 0, 999)
+            : base(SweetSufferingConfig.MinGlucose, SweetSufferingConfig.MaxGlucose)
         {
             MeasurementAdded += GlucoseAddedInFile;
         }
 
-        private void GlucoseAddedInFile(object sender, MeasurementLevel args)
+        private void GlucoseAddedInFile(object sender, MeasurementEventArgs args)
         {
             switch(args.Level)
             {
@@ -24,10 +24,13 @@
                     Messages.Warning("Twój poziom cukru jest niski!");
                     break;
                 case int i when (i >= 180 && i < 200):
-                    Messages.Warning("Twój poziom cukru za wysoki!");
+                    Messages.Warning("Twój poziom cukru jest za wysoki!");
+                    break;
+                case int i when (i > 60 && i <= 100):
+                    Messages.Success("Gratulacje! Poziom cukru w normie :)");
                     break;
                 default:
-                    Messages.Succes("Gratulacje! Jak na cukrzyka dobry poziom cukru :)");
+                    Messages.Success("Gratulacje! Jak na cukrzyka dobry poziom cukru :)");
                     break;
             }
         }
@@ -45,10 +48,7 @@
                 try
                 {
                     writer.WriteLine(valueToWrite);
-                    if (MeasurementAdded != null)
-                    {                        
-                        MeasurementAdded(this, new MeasurementLevel(Measurement));
-                    }
+                    MeasurementAdded?.Invoke(this, new MeasurementEventArgs(Measurement));
                 }
                 catch (Exception ex)
                 {

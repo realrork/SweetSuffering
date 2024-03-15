@@ -5,12 +5,11 @@ namespace SweetSuffering
 {
     public abstract class ReceiverToFileAbstract
     {
-        public delegate void MeasurementAddedDelegate(object sender, MeasurementLevel args);
+        public delegate void MeasurementAddedDelegate(object sender, MeasurementEventArgs args);
         public abstract event MeasurementAddedDelegate MeasurementAdded;
 
-        public ReceiverToFileAbstract(string fileName, int minMeasurement, int maxMeasurement)
+        public ReceiverToFileAbstract(int minMeasurement, int maxMeasurement)
         {
-            FileName = fileName;
             Date = DateTime.Now;
             Measurement = 0;
             MinMeasurement = minMeasurement;
@@ -18,15 +17,14 @@ namespace SweetSuffering
             MeasurementAdded += MeasurementAddedBase;
         }
 
-        public string FileName { get; private set; }
         public DateTime Date { get; private set; }
         public int Measurement { get; private set; }
         public int MinMeasurement { get; private set; }
         public int MaxMeasurement { get; private set; }
 
-        public void MeasurementAddedBase(object sender, MeasurementLevel args)
+        public void MeasurementAddedBase(object sender, MeasurementEventArgs args)
         {
-            Messages.Succes("Pomiar zapisany do pliku.");
+            Console.Write("Pomiar zweryfikowany - ");
         }
 
         public virtual void AddMeasurement(string measurement) { }
