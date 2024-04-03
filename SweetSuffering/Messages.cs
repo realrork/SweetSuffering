@@ -39,9 +39,9 @@
         public static string ShowStatsMenu()
         {
             Console.WriteLine("\nWybierz okres, za który mają być zliczone statystyki:");
-            Console.WriteLine("1. tydzień");
-            Console.WriteLine("2. miesiąc");
-            Console.WriteLine("3. 2 miesiące");
+            Console.WriteLine("1. 7 ostatnich wpisów");
+            Console.WriteLine("2. 30 ostatnich wpisów");
+            Console.WriteLine("3. 60 ostatnich wpisów");
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("q. Anuluj i przejdź do głównego menu\n");
             Console.Write("Twój wybór: ");
@@ -64,13 +64,12 @@
 
             Console.WriteLine("Twoje statystyki cukrów, insuliny i węglowodanów");
             Console.WriteLine("================================================");
-            Console.WriteLine($"|Cukier|    min: {ming}, max: {maxg}, średni: {avgg}");
+            Console.WriteLine($"|Glukoza|    min: {ming}, max: {maxg}, średnia: {Math.Round(avgg, 2)}");
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine($"| Min |     {ming}\t   |     {mini}\t   |    {minc}\t |");
-            Console.WriteLine($"| Max |    {maxg}\t   |    {maxi}\t   |    {maxc}\t\t  |");
-            Console.WriteLine($"| Avg |    {avgg}\t   |    {avgi}\t   |    {avgc}\t\t  |");
+            Console.WriteLine($"|Insulina|    min: {mini}, max: {maxi}, średnia: {Math.Round(avgi, 2)}");
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine(stats.ToString());
+            Console.WriteLine($"|Węglowodany|    min: {minc}, max: {maxc}, średnia: {Math.Round(avgc, 2)}");
+            Console.WriteLine("------------------------------------------------------");
         }
     }
 }

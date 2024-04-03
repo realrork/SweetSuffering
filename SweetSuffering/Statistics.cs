@@ -40,7 +40,7 @@
             if (File.Exists(glucoseFile))
             {
                 using (var reader = File.OpenText(glucoseFile))
-                {
+                {                     
                     var line = reader.ReadLine();
                     while (line != null)
                     {
@@ -50,9 +50,8 @@
                             if (!string.IsNullOrEmpty(chunks[0]))
                             {
                                 if (DateTime.TryParse(chunks[0], out DateTime date))
-                                {
-                                    TimeSpan timeSpan = DateTime.Now - date;
-                                    if (timeSpan.Days < Period)
+                                {                                    
+                                    if (counter <= Period)
                                     {
                                         if (int.TryParse(chunks[1], out int value))
                                         {
@@ -84,12 +83,12 @@
                             throw new Exception($"W pliku {glucoseFile} znajduje się nieprawidłowy wpis!");
                         }
                         line = reader.ReadLine();
-                    }                    
+                    }
                 }
                 AverageGlucose = (float)sum / (float)counter;
             }
         }
-        
+
         private void LoadInsulinDataFromFiles()
         {
             int counter = 0;
@@ -108,9 +107,8 @@
                             if (!string.IsNullOrEmpty(chunks[0]))
                             {
                                 if (DateTime.TryParse(chunks[0], out DateTime date))
-                                {
-                                    TimeSpan timeSpan = DateTime.Now - date;
-                                    if (timeSpan.Days < Period)
+                                {                                    
+                                    if (counter <= Period)
                                     {
                                         if (int.TryParse(chunks[1], out int value))
                                         {
@@ -166,9 +164,8 @@
                             if (!string.IsNullOrEmpty(chunks[0]))
                             {
                                 if (DateTime.TryParse(chunks[0], out DateTime date))
-                                {
-                                    TimeSpan timeSpan = DateTime.Now - date;
-                                    if (timeSpan.Days < Period)
+                                {                                                          
+                                    if (counter <= Period)
                                     {
                                         if (int.TryParse(chunks[1], out int value))
                                         {
@@ -205,6 +202,7 @@
                 AverageCH = (float)sum / (float)counter;
             }
         }
+
 
         public (int, int, float, int, int, float, int, int, float) GetStatistic(int period)
         {
