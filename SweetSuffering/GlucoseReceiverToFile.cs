@@ -1,6 +1,6 @@
 ﻿namespace SweetSuffering
 {
-    internal class GlucoseReceiverToFile : ReceiverToFileAbstract
+    public class GlucoseReceiverToFile : ReceiverToFileAbstract
     {
         private string fileName = SweetSufferingConfig.GlucoseValuesFile;
 

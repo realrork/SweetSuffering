@@ -34,59 +34,7 @@
 
         private void LoadGlucoseDataFromFiles()
         {
-            int counter = 0;
-            int sum = 0;
-
-            if (File.Exists(glucoseFile))
-            {
-                using (var reader = File.OpenText(glucoseFile))
-                {                     
-                    var line = reader.ReadLine();
-                    while (line != null)
-                    {
-                        string[] chunks = line.Split(';');
-                        if (chunks.Length == 2)
-                        {
-                            if (!string.IsNullOrEmpty(chunks[0]))
-                            {
-                                if (DateTime.TryParse(chunks[0], out DateTime date))
-                                {                                    
-                                    if (counter <= Period)
-                                    {
-                                        if (int.TryParse(chunks[1], out int value))
-                                        {
-                                            if (value < MinGlucose)
-                                            {
-                                                MinGlucose = value;
-                                            }
-                                            if (value > MaxGlucose)
-                                            {
-                                                MaxGlucose = value;
-                                            }
-                                            sum += value;
-                                            counter++;
-                                        }
-                                        else
-                                        {
-                                            throw new Exception($"W pliku {glucoseFile} znajdują nieprawidłowe dane!");
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    throw new Exception($"W pliku {glucoseFile} znajdują nieprawidłowe daty!");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception($"W pliku {glucoseFile} znajduje się nieprawidłowy wpis!");
-                        }
-                        line = reader.ReadLine();
-                    }
-                }
-                AverageGlucose = (float)sum / (float)counter;
-            }
+           
         }
 
         private void LoadInsulinDataFromFiles()

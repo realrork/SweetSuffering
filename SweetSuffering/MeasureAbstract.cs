@@ -1,11 +1,11 @@
 ﻿namespace SweetSuffering
 {
-    public abstract class ReceiverToFileAbstract
+    public abstract class MeasureAbstract
     {
         public delegate void MeasurementAddedDelegate(object sender, MeasurementEventArgs args);
         public abstract event MeasurementAddedDelegate MeasurementAdded;
 
-        public ReceiverToFileAbstract(int minMeasurement, int maxMeasurement)
+        public MeasureAbstract(int minMeasurement, int maxMeasurement)
         {
             Date = DateTime.Now;
             Measurement = 0;
