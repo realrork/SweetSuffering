@@ -61,9 +61,11 @@ internal class Program
             else if (input == "4")
             {
                 while (true)
-                {
-                    Statistics stats = new Statistics();
+                {                    
                     string statsInput = Messages.ShowStatsMenu();
+                    GlucoseStats glucoseStats = new GlucoseStats();
+                    InsulinStats insulinStats = new InsulinStats();
+                    CHStats chStats = new CHStats();
 
                     if (statsInput == "q")
                     {
@@ -71,15 +73,16 @@ internal class Program
                     }
                     else if (statsInput == "1")
                     {
-                        Messages.ShowStatistics(stats.GetStatistic(7));
+                        Messages.ShowStatistics(glucoseStats.GetStats(7), insulinStats.GetStats(7), chStats.GetStats(7));
                     }
                     else if (statsInput == "2")
                     {
-                        Messages.ShowStatistics(stats.GetStatistic(30));
+                        Messages.ShowStatistics(glucoseStats.GetStats(30), insulinStats.GetStats(30), chStats.GetStats(30));
                     }
                     else if (statsInput == "3")
                     {
-                        Messages.ShowStatistics(stats.GetStatistic(60));
+                        Messages.ShowStatistics(glucoseStats.GetStats(60), insulinStats.GetStats(60), chStats.GetStats(60));
+
                     }
                 }
             }

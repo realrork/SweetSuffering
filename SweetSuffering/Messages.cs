@@ -58,17 +58,20 @@
             Console.WriteLine("========================================");
         }
 
-        public static void ShowStatistics((int, int, float, int, int, float, int, int, float) stats)
+        public static void ShowStatistics((int, int, float) gStats, (int, int, float) iStats, (int, int, float) cStats )
         {
-            (int ming, int maxg, float avgg, int mini, int maxi, float avgi, int minc, int maxc, float avgc) = stats;
+            
+            (int ming, int maxg, float avgg) = gStats;
+            (int mini, int maxi, float avgi) = iStats;
+            (int minc, int maxc, float avgc) = cStats;
 
             Console.WriteLine("Twoje statystyki cukrów, insuliny i węglowodanów");
             Console.WriteLine("================================================");
-            Console.WriteLine($"|Glukoza|    min: {ming}, max: {maxg}, średnia: {Math.Round(avgg, 2)}");
+            Console.WriteLine($"|    Glukoza  |    min: {ming}, max: {maxg}, średnia: {Math.Round(avgg, 2)}");
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine($"|Insulina|    min: {mini}, max: {maxi}, średnia: {Math.Round(avgi, 2)}");
+            Console.WriteLine($"|   Insulina  |    min: {mini}, max: {maxi}, średnia: {Math.Round(avgi, 2)}");
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine($"|Węglowodany|    min: {minc}, max: {maxc}, średnia: {Math.Round(avgc, 2)}");
+            Console.WriteLine($"| Węglowodany |    min: {minc}, max: {maxc}, średnia: {Math.Round(avgc, 2)}");
             Console.WriteLine("------------------------------------------------------");
         }
     }

@@ -43,7 +43,7 @@
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Wystąpił błąd podczas zapisu danych do pliku");
+                    throw new Exception("Wystąpił błąd podczas zapisu danych do pliku!");
                 }
             }
         }
